@@ -1,0 +1,61 @@
+RESTOM, Top model net flux
+RESSURF, SRF net flux
+RESTOA_CERES-EBAF, TOA  net flux
+RESTOA_ERBE, TOA  net flux
+SOLIN_CERES-EBAF, Insolation
+SOLIN_CERES, Insolation
+CLDTOT_ISCCP, Total cloud cover
+CLDTOT_CLOUDSAT, Total cloud cover
+FLDS_ISCCP, LW down SRF
+FLNS_ISCCP, LW net SRF
+FLUT_CERES-EBAF, LW up Top
+FLUT_CERES, LW up Top
+FLUT_ERBE, LW up Top
+FLUTC_CERES-EBAF, LW up Top Clearsky
+FLUTC_CERES, LW up Top Clearsky
+FLUTC_ERBE, LW up Top Clearsky
+FLNT_CAM, LW net Top
+FSDS_ISCCP, SW down SRF
+FSNS_ISCCP, SW net SRF
+FSNS_LARYEA, SW net SRF
+FSNTOA_CERES, SW net TOA
+FSNTOA_ERBE, SW net TOA
+FSNTOAC_CERES, SW net TOA clearsky
+FSNTOAC_ERBE, SW net TOA clearsky
+FSNT_CAM, SW net Top
+LHFLX_JRA25, Lat Heat Flux
+LHFLX_ERA40, Lat Heat Flux
+LHFLX_WHOI, Lat Heat Flux
+LWCF_CERES-EBAF, LW Cloud Forc
+LWCF_CERES, LW Cloud Forc
+LWCF_ERBE, LW Cloud Forc
+PRECT_GPCP, Precipitation
+PREH2O_NVAP, Precipitable water
+PREH2O_AIRS, Precipitable water
+PREH2O_JRA25, Precipitable water
+PREH2O_ERAI, Precipitable water
+PREH2O_ERA40, Precipitable water
+PSL_JRA25, SeaLev pressure
+PSL_ERAI, SeaLev pressure
+SHFLX_JRA25, Sens Heat Flux
+SHFLX_NCEP, Sens Heat Flux
+SHFLX_LARYEA, Sens Heat Flux
+STRESS_MAG_ERS, 
+STRESS_MAG_LARYEA, 
+STRESS_MAG_JRA25, 
+SWCF_CERES-EBAF, SW Cloud Forc
+SWCF_CERES, SW Cloud Forc
+SWCF_ERBE, SW Cloud Forc
+AODVIS, aerosol optical depth
+AODDUST, dust aerosol optical depth
+SST_HADISST, Sea Srf Temp
+SST_HADISST_PI, SST preindustrial
+SST_HADISST_PD, SST present day
+TREFHT_LEGATES, 2m Temp
+TREFHT_JRA25, 2m Temp
+TS_NCEP, 2m Temp
+TS_LAND_NCEP, 2m Temp land
+U_200_JRA25, Zonal Wind 
+U_200_NCEP, Zonal Wind
+Z3_500_JRA25, Geop Height
+Z3_500_NCEP, Geop Height
