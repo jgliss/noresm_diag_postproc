@@ -13,8 +13,9 @@ In the following, all requirement packages are listed including version specific
 
 __Optional__
 
-- ipywidgets >= 7.2.1 (for interactive features -> see widgets.py)
-- urllib (for direct downloads of ascii tables)
+- ipywidgets >= 7.2.1 (for interactive features -> see *widgets.py*)
+- urllib (for direct downloads of ascii tables -> see notebook *download_tables.ipynb*)
+- csv (for direct downloads of ascii tables -> see notebook *download_tables.ipynb*)
 
 ## Getting started
 
@@ -27,6 +28,8 @@ $ jupyter notebook
 This should open the notebook app in your default browser. From there, open one of the analysis notebook tools (currently it contains only one: ***analysis_tool.ipynb***) and follow the instructions in the introduction section.
 
 ### Preparation of tables 
+
+You can download them manually or use notebook [download_tables.ipynb](https://github.com/jgliss/noresm_diag_postproc/blob/master/download_tables.ipynb) for creating local copies of result tables (based on a list of provided URL's)
 
 ### Additional source files
 
