@@ -2,6 +2,8 @@
 import pandas as pd
 import numpy as np
 import os
+import urllib
+import csv
 import matplotlib.cm as colormaps
 import matplotlib.colors as colors
 from collections import OrderedDict as od
@@ -238,6 +240,50 @@ def read_and_merge_all(file_list, var_info_dict=None,
     df = df[df.columns].astype(float)
     return df
 
+def download_cams_diag_result_csv(url, save_dir="."):
+    """Downloads and saves ascii table from online resource
+    
+    Parameters
+    ----------
+    url : str
+        URL of table
+    save_dir : str
+        output directory
+        
+    Returns
+    -------
+    str
+        path of locally stored CSV file (can e.g. be read using method
+        read_file_custom)
+    """
+    
+    try:
+        response = urllib.request.urlopen(url) # it's a file like object and works just like a file
+        lines = [l.decode("UTF-8").strip() for l in response.readlines()]
+    except Exception as e:
+        raise IOError("Failed to read from online resource {}"
+                      "Error: {}".format(url, repr(e)))
+    
+    if not len(lines) > 10:
+        raise IOError("Invalid format after reading")
+    s =lines[2]
+    if not s.startswith("TEST"):
+        raise IOError("URL is likely not a valid diagnostics file since it "
+                      "does not include TEST CASE specification in 3 line")
+    filename = s.split("TEST CASE:")[-1].strip() + '.csv'
+    outfile = os.path.join(save_dir, filename)
+    
+    if os.path.exists(outfile):
+        raise IOError("CSV file {} already exists in directory".format(outfile))
+    try:
+        with open(outfile, "w") as output:
+            writer = csv.writer(output)
+            for val in lines:
+                writer.writerow([val])
+    except Exception as e:
+        raise IOError("Failed to write to csv at {}"
+                      "Error: {}".format(outfile, repr(e)))
+    return outfile
 
 def read_file_custom(fpath, var_info_dict=None, run_id=None, verbose=False):
     """Custom ASCII conversion method 
@@ -644,58 +690,10 @@ def exponent(num):
 
 if __name__ == "__main__":
     
-    data_dir = "./data/michael_ascii_read/"
-    files = [os.path.join(data_dir, f) for f in os.listdir(data_dir) if 
-             f.endswith(".webarchive")]
+    # try read and store csv
+    url = "http://ns2345k.web.sigma2.no/noresm_diagnostics/NF1850_CTRL_f19_f19_r265_20180412/CAM_DIAG/yrs5to30-obs/set1/table_GLBL_ANN_obs.asc"
     
-    df0 = read_file_custom(files[0])
-    df1 = read_file_custom(files[1])
+    fp = download_cams_diag_result_csv(url, save_dir='./output/')
     
-    concat = pd.concat([df0, df1], axis=0)
-    df0.head()
-    
-    from glob import glob
-    
-    xlspath = glob("./data/michael_ascii_read/*.xlsx", recursive=True)[0]
-    
-    var_info = read_var_info_michaels_excel(xlspath)
-    
-    
-    save_varinfo_dict_csv(var_info, 'data/var_info.csv')
-    
-    df2 =  read_file_custom(files[3], run_id="Run1")
-    
-    df_all = read_and_merge_all(files)
-    
-    test_cases = df_all.index.get_level_values(0).value_counts().index.values
-    
-    repl = ["Run{}".format(x+1) for x in range(len(test_cases))]
-    
-    d = dict(zip(test_cases, repl))
-    print(d)
-    
-    df_all.rename(index=d, level=0, inplace=True)
-
-    df_all.head()    
-    
-    
-    df11 = read_and_merge_all(files, replace_runid_prefix="Bla")
-    
-    var_info_load = load_varinfo_dict_csv('data/var_info.csv')
-    
-    import pandas, io
-    
-        
-    
-    data = io.StringIO('''Fruit,Color,Count,Price
-    Apple,Red,3,$1.29
-    Apple,Green,9,$0.99
-    Pear,Red,25,$2.59
-    Pear,Green,26,$2.79
-    Lime,Green,99,$0.39
-    ''')
-    df_unindexed = pandas.read_csv(data)
-    df_unindexed
-    df_cropped = crop_selection_dataframe(df_unindexed, [4,2])
-    print(df_cropped)
+    dfurl = read_file_custom(fp)
     

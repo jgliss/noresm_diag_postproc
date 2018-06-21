@@ -14,6 +14,7 @@ In the following, all requirement packages are listed including version specific
 __Optional__
 
 - ipywidgets >= 7.2.1 (for interactive features -> see widgets.py)
+- urllib (for direct downloads of ascii tables)
 
 ## Getting started
 
@@ -24,6 +25,8 @@ $ jupyter notebook
 ```
 
 This should open the notebook app in your default browser. From there, open one of the analysis notebook tools (currently it contains only one: ***analysis_tool.ipynb***) and follow the instructions in the introduction section.
+
+### Preparation of tables 
 
 ### Additional source files
 
