@@ -274,7 +274,8 @@ def download_cams_diag_result_csv(url, save_dir="."):
     outfile = os.path.join(save_dir, filename)
     
     if os.path.exists(outfile):
-        raise IOError("CSV file {} already exists in directory".format(outfile))
+        print("Warning: CSV file {} already exists in directory and will be "
+              "overwritten".format(outfile))
     try:
         with open(outfile, "w") as output:
             writer = csv.writer(output)
